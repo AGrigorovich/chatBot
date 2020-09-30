@@ -3,7 +3,11 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import * as clientsActions from '../store/actions/clients';
 import * as clientsTypes from '../store/types/clients';
 
-import { getClientsListRequest, createClientRequest } from '../services/API/clients';
+import {
+    getClientsListRequest,
+    createClientRequest,
+    deleteClientRequest,
+} from '../services/API/clients';
 
 function* getClientsAction() {
     try {
@@ -34,8 +38,8 @@ function* editClientAction({ payload }) {
 
 function* deleteClientAction({ payload }) {
     try {
-        yield call(getClientsListRequest);
-        yield put(clientsActions.successDeleteClient(payload));
+        const { data } = yield call(deleteClientRequest, payload);
+        yield put(clientsActions.successDeleteClient(data));
     } catch (err) {
         yield put(clientsActions.failDeleteClient(err));
     }

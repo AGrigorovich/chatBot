@@ -18,3 +18,10 @@ export function createClientRequest(payload) {
         method: 'POST',
     });
 }
+
+export function deleteClientRequest(payload) {
+    return sendRequest('/clients', {
+        data: JSON.stringify(payload),
+        method: 'DELETE',
+    });
+}

@@ -63,7 +63,9 @@ export default (state = initialState, { type, payload }) => {
         case clientsTypes.DELETE_CLIENT_SUCCESS:
             return {
                 ...state,
-                arrayOfClients: [...state.arrayOfClients.filter((client) => client.id !== payload)],
+                arrayOfClients: [
+                    ...state.arrayOfClients.filter((client) => client.id !== payload.id),
+                ],
             };
         case clientsTypes.DELETE_CLIENT_FAIL:
             return {
