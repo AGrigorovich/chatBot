@@ -82,7 +82,7 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 arrayOfServices: [
-                    ...state.arrayOfServices.filter((service) => service.id !== payload),
+                    ...state.arrayOfServices.filter((service) => service.id !== payload.id),
                 ],
             };
         case servicesTypes.DELETE_SERVICE_FAIL:

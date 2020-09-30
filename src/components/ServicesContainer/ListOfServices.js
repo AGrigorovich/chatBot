@@ -52,21 +52,22 @@ const ListOfServices = ({
 
     return (
         <Grid className={classes.root}>
-            {arrayOfServices.map(({ id, serviceName, price, branches }) => (
-                <Grid className={classes.servicesListItem} key={id}>
+            {arrayOfServices.map((service) => (
+                <Grid className={classes.servicesListItem} key={service.id}>
                     <Grid className={classes.servicesDataContainer}>
-                        <Grid>{serviceName}</Grid>
-                        <Grid>{price}</Grid>
-                        <Grid>{detectBranchesNames(branches)}</Grid>
+                        <Grid>{service.serviceName}</Grid>
+                        <Grid>{service.price}</Grid>
+                        <Grid>{detectBranchesNames(service.branches)}</Grid>
                     </Grid>
                     <Grid className={classes.iconContainer}>
                         <Edit
                             className={classes.icon}
-                            onClick={() =>
-                                changeSelectedService({ id, serviceName, price, branches })
-                            }
+                            onClick={() => changeSelectedService(service)}
                         />
-                        <DeleteOutline className={classes.icon} onClick={() => deleteService(id)} />
+                        <DeleteOutline
+                            className={classes.icon}
+                            onClick={() => deleteService(service.id)}
+                        />
                     </Grid>
                 </Grid>
             ))}

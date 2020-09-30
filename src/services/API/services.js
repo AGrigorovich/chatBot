@@ -5,3 +5,10 @@ export function getServicesListRequest() {
         method: 'GET',
     });
 }
+
+export function deleteServiceRequest(payload) {
+    return sendRequest('/service-types', {
+        data: JSON.stringify(payload),
+        method: 'DELETE',
+    });
+}

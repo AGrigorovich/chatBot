@@ -3,7 +3,7 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import * as servicesActions from '../store/actions/services';
 import * as servicesTypes from '../store/types/services';
 
-import { getServicesListRequest } from '../services/API/services';
+import { getServicesListRequest, deleteServiceRequest } from '../services/API/services';
 
 function* getServicesAction() {
     try {
@@ -34,8 +34,8 @@ function* editServiceAction({ payload }) {
 
 function* deleteServiceAction({ payload }) {
     try {
-        yield call(getServicesListRequest);
-        yield put(servicesActions.successDeleteService(payload));
+        const { data } = yield call(deleteServiceRequest, payload);
+        yield put(servicesActions.successDeleteService(data));
     } catch (err) {
         yield put(servicesActions.failDeleteService(err));
     }
