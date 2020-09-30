@@ -7,34 +7,35 @@ export function getBranchesListRequest() {
 }
 
 export function createBranchRequest(payload) {
-    const { name, address } = payload;
+    const { name, address, openTime, closeTime } = payload;
     return sendRequest('/salons', {
         data: JSON.stringify({
             name,
             address,
+            openTime,
+            closeTime,
         }),
         method: 'POST',
     });
 }
 
 export function editBranchRequest(payload) {
-    const { id, name, address } = payload;
+    const { id, name, address, openTime, closeTime } = payload;
     return sendRequest('/salons', {
         data: JSON.stringify({
             id,
             name,
             address,
+            openTime,
+            closeTime,
         }),
         method: 'PUT',
     });
 }
 
 export function deleteBranchRequest(payload) {
-    const { id } = payload;
     return sendRequest('/salons', {
-        data: JSON.stringify({
-            id,
-        }),
+        data: JSON.stringify(payload),
         method: 'DELETE',
     });
 }

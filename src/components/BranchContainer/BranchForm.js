@@ -63,7 +63,16 @@ const BranchForm = ({
     const [initialValues, changeInitialValues] = useState({ name, address });
 
     useEffect(() => {
-        const { name: branchName = '', address: branchAddress = '' } = selectedBranch;
+        const {
+            name: branchName = '',
+            address: branchAddress = '',
+            openTime = '',
+            closeTime = '',
+        } = selectedBranch;
+        const branchOpenTime = { label: openTime.slice(0, 5), value: openTime };
+        const branchCloseTime = { label: closeTime.slice(0, 5), value: closeTime };
+        changeStartWorkHours(branchOpenTime);
+        changeEndWorkHours(branchCloseTime);
         changeInitialValues({
             name: branchName,
             address: branchAddress,
@@ -90,7 +99,9 @@ const BranchForm = ({
                     );
                 }
                 setSubmitting(false);
-                const newData = { ...values, startWorkHours, endWorkHours, id };
+                const openTime = startWorkHours.value;
+                const closeTime = endWorkHours.value;
+                const newData = { ...values, openTime, closeTime, id };
                 resetForm();
                 changeSelectedBranch({});
                 changeStartWorkHours(null);
@@ -155,8 +166,8 @@ BranchForm.propTypes = {
     selectedBranch: PropTypes.shape({
         name: PropTypes.string,
         address: PropTypes.string,
-        startWorkHours: PropTypes.string,
-        endWorkHours: PropTypes.string,
+        openTime: PropTypes.string,
+        closeTime: PropTypes.string,
         id: PropTypes.number,
     }).isRequired,
     changeSelectedBranch: PropTypes.func.isRequired,

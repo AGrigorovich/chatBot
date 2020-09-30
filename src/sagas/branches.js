@@ -21,7 +21,7 @@ function* getBranchesAction() {
 
 function* createBranchAction({ payload }) {
     try {
-        const data = yield call(createBranchRequest, payload);
+        const { data } = yield call(createBranchRequest, payload);
         yield put(branchesActions.successCreateBranch(data));
     } catch (err) {
         yield put(branchesActions.failCreateBranch(err));
@@ -30,7 +30,7 @@ function* createBranchAction({ payload }) {
 
 function* editBranchAction({ payload }) {
     try {
-        const data = yield call(editBranchRequest, payload);
+        const { data } = yield call(editBranchRequest, payload);
         yield put(branchesActions.successEditBranch(data));
     } catch (err) {
         yield put(branchesActions.failEditBranch(err));
@@ -39,7 +39,7 @@ function* editBranchAction({ payload }) {
 
 function* deleteBranchAction({ payload }) {
     try {
-        const data = yield call(deleteBranchRequest, payload);
+        const { data } = yield call(deleteBranchRequest, payload);
         yield put(branchesActions.successDeleteBranch(data));
     } catch (err) {
         yield put(branchesActions.failDeleteBranch(err));

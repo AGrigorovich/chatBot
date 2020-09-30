@@ -61,7 +61,7 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 arrayOfBranches: [
-                    ...state.arrayOfBranches.filter((branch) => branch.id !== payload),
+                    ...state.arrayOfBranches.filter((branch) => branch.id !== payload.id),
                 ],
             };
         case branchTypes.DELETE_BRANCH_FAIL:

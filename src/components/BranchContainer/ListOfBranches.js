@@ -13,6 +13,7 @@ const styles = {
         width: '100%%',
         maxWidth: '50rem',
         overflowY: 'auto',
+        padding: '.5rem .75rem .5rem .5rem',
     },
     branchListItem: {
         display: 'flex',
@@ -37,18 +38,22 @@ const styles = {
 
 const ListOfBranches = ({ classes, changeSelectedBranch, arrayOfBranches, deleteBranch }) => (
     <Grid className={classes.root}>
-        {arrayOfBranches.map(({ id, name, address }) => (
-            <Grid className={classes.branchListItem} key={id}>
+        {arrayOfBranches.map((branch) => (
+            <Grid className={classes.branchListItem} key={branch.id}>
                 <Grid className={classes.branchDataContainer}>
-                    <Grid>{name}</Grid>
-                    <Grid>{address}</Grid>
+                    <Grid>{branch.name}</Grid>
+                    <Grid>{branch.address}</Grid>
+                    <Grid>
+                        {branch.openTime ? branch.openTime.slice(0, 5) : ''} -{' '}
+                        {branch.closeTime.slice(0, 5)}
+                    </Grid>
                 </Grid>
                 <Grid className={classes.iconContainer}>
-                    <Edit
+                    <Edit className={classes.icon} onClick={() => changeSelectedBranch(branch)} />
+                    <DeleteOutline
                         className={classes.icon}
-                        onClick={() => changeSelectedBranch({ id, name, address })}
+                        onClick={() => deleteBranch(branch.id)}
                     />
-                    <DeleteOutline className={classes.icon} onClick={() => deleteBranch(id)} />
                 </Grid>
             </Grid>
         ))}
