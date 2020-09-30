@@ -7,8 +7,8 @@ import { getMailsListRequest, sendNewMailRequest } from '../services/API/mails';
 
 function* getMailsAction() {
     try {
-        yield call(getMailsListRequest);
-        yield put(mailsActions.successGetMailsList());
+        const { data } = yield call(getMailsListRequest);
+        yield put(mailsActions.successGetMailsList(data));
     } catch (err) {
         yield put(mailsActions.failGetMailsList(err));
     }

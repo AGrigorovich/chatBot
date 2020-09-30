@@ -1,16 +1,9 @@
 import sendRequest from './sendRequest';
 
 export function getMailsListRequest() {
-    return setTimeout(() => {
-        return {};
-    }, 1000);
-    /*    return sendRequest('/auth/login', {
-			data: JSON.stringify({
-				email,
-				password,
-			}),
-			method: 'POST',
-		}); */
+    return sendRequest('/remainders', {
+        method: 'GET',
+    });
 }
 
 export function sendNewMailRequest(payload) {
