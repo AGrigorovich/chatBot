@@ -49,8 +49,10 @@ const ListOfEmployees = ({
                     <Grid>{employee.name}</Grid>
                     <Grid>{employee.surname}</Grid>
                     <Grid>{employee.nickname}</Grid>
-                    <Grid>{employee.salonEntity.name}</Grid>
-                    <Grid>{employee.serviceTypeEntity.serviceName}</Grid>
+                    <Grid>{employee.salonEntity ? employee.salonEntity.name : ''}</Grid>
+                    <Grid>
+                        {employee.serviceTypeEntity ? employee.serviceTypeEntity.serviceName : ''}
+                    </Grid>
                 </Grid>
                 <Grid className={classes.iconContainer}>
                     <Edit

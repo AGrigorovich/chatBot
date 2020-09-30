@@ -17,3 +17,10 @@ export function createEmployeeRequest(payload) {
         method: 'POST',
     });
 }
+
+export function deleteEmployeeRequest(payload) {
+    return sendRequest('/employees', {
+        data: JSON.stringify(payload),
+        method: 'DELETE',
+    });
+}

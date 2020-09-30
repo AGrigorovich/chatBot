@@ -3,7 +3,11 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import * as employeesActions from '../store/actions/employees';
 import * as employeesTypes from '../store/types/employees';
 
-import { getEmployeesListRequest, createEmployeeRequest } from '../services/API/employees';
+import {
+    getEmployeesListRequest,
+    createEmployeeRequest,
+    deleteEmployeeRequest,
+} from '../services/API/employees';
 
 function* getEmployeesAction() {
     try {
@@ -34,8 +38,8 @@ function* editEmployeeAction({ payload }) {
 
 function* deleteEmployeeAction({ payload }) {
     try {
-        yield call(getEmployeesListRequest);
-        yield put(employeesActions.successDeleteEmployee(payload));
+        const { data } = yield call(deleteEmployeeRequest, payload);
+        yield put(employeesActions.successDeleteEmployee(data));
     } catch (err) {
         yield put(employeesActions.failDeleteEmployee(err));
     }

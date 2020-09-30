@@ -64,7 +64,7 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 arrayOfEmployees: [
-                    ...state.arrayOfEmployees.filter((employee) => employee.id !== payload),
+                    ...state.arrayOfEmployees.filter((employee) => employee.id !== payload.id),
                 ],
             };
         case employeesTypes.DELETE_EMPLOYEE_FAIL:
