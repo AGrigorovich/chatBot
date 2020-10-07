@@ -29,6 +29,7 @@ import PrivateRoute from './Routes/PrivateRoute';
 import PublicRoute from './Routes/PublicRoute';
 
 import AppLoader from './AppLoader/AppLoader';
+import AppNotifications from './AppNotifications/AppNotifications';
 
 export {
     AuthContainer,
@@ -52,4 +53,5 @@ export {
     PrivateRoute,
     PublicRoute,
     AppLoader,
+    AppNotifications,
 };

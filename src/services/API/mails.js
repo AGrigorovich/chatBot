@@ -7,7 +7,12 @@ export function getMailsListRequest() {
 }
 
 export function sendNewMailRequest(payload) {
-    return setTimeout(() => {
-        console.log('sendNewMailRequest payload:', payload);
-    }, 1000);
+    const { remainderText } = payload;
+    return sendRequest('/remainders', {
+        data: JSON.stringify({
+            remainderText,
+            delayDays: 10,
+        }),
+        method: 'POST',
+    });
 }

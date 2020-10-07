@@ -9,11 +9,11 @@ export default (state = initialState, { type, payload }) => {
         case reviewTypes.GET_REVIEWS_START:
             return {
                 ...state,
-                arrayOfReviews: payload,
             };
         case reviewTypes.GET_REVIEWS_SUCCESS:
             return {
                 ...state,
+                arrayOfReviews: payload,
             };
         case reviewTypes.GET_REVIEWS_FAIL:
             return {

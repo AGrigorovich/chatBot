@@ -11,7 +11,7 @@ import {
 
 function* getReviewsAction() {
     try {
-        const data = yield call(getReviewsRequest);
+        const { data } = yield call(getReviewsRequest);
         yield put(reviewActions.successGetReviews(data));
     } catch (err) {
         yield put(reviewActions.failGetReviews(err));

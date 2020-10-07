@@ -21,6 +21,7 @@ import {
     PrivateRoute,
     PublicRoute,
     AppLoader,
+    AppNotifications,
 } from './components';
 
 import endpoints from './services/routeEndpoints';
@@ -73,6 +74,7 @@ export default function App() {
                     </Switch>
                 </Router>
                 <AppLoader />
+                <AppNotifications />
             </ThemeProvider>
         </Provider>
     );

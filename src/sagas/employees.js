@@ -8,6 +8,7 @@ import {
     createEmployeeRequest,
     deleteEmployeeRequest,
 } from '../services/API/employees';
+import * as notificationsActions from '../store/actions/notifications';
 
 function* getEmployeesAction() {
     try {
@@ -22,8 +23,18 @@ function* createEmployeeAction({ payload }) {
     try {
         const data = yield call(createEmployeeRequest, payload);
         yield put(employeesActions.successCreateEmployee(data));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationText: 'Сотрудник был успешно создан',
+            })
+        );
     } catch (err) {
         yield put(employeesActions.failCreateEmployee(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Сотрудник не был создан',
+            })
+        );
     }
 }
 
@@ -31,8 +42,18 @@ function* editEmployeeAction({ payload }) {
     try {
         yield call(getEmployeesListRequest);
         yield put(employeesActions.successEditEmployee(payload));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationText: 'Сотрудник был успешно изменен',
+            })
+        );
     } catch (err) {
         yield put(employeesActions.failEditEmployee(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Сотрудник не был создан',
+            })
+        );
     }
 }
 
@@ -40,8 +61,18 @@ function* deleteEmployeeAction({ payload }) {
     try {
         const { data } = yield call(deleteEmployeeRequest, payload);
         yield put(employeesActions.successDeleteEmployee(data));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationText: 'Сотрудник был успешно удален',
+            })
+        );
     } catch (err) {
         yield put(employeesActions.failDeleteEmployee(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Сотрудник не был создан',
+            })
+        );
     }
 }
 

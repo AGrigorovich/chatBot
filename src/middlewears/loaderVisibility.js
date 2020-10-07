@@ -13,7 +13,7 @@ export default (store) => (next) => (action) => {
         if (actionSagaType === START) {
             if (!requestsQueue.length) {
                 store.dispatch(loaderShow());
-                setTimeout(() => store.dispatch(loaderHide()), 1000);
+                setTimeout(() => store.dispatch(loaderHide()), 500);
                 requestsQueue.push(actionBodyType);
             }
         } else if (actionSagaType === FAIL || actionSagaType === SUCCESS) {

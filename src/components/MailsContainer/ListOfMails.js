@@ -16,9 +16,8 @@ const styles = {
     emailListItem: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'space-between',
-        textAlign: 'justify',
         padding: '1rem 0',
     },
     dates: {
@@ -30,10 +29,10 @@ const styles = {
 
 const ListOfMails = ({ classes, arrayOfMails }) => (
     <Grid className={classes.root}>
-        {arrayOfMails.map(({ id, publicDate, description }) => (
-            <Grid className={classes.emailListItem} key={id}>
-                <Grid className={classes.dates}>{publicDate}</Grid>
-                <Grid>{description}</Grid>
+        {arrayOfMails.map((mail) => (
+            <Grid className={classes.emailListItem} key={mail.id}>
+                <Grid className={classes.dates}>12/12/2020</Grid>
+                <Grid>{mail.remainderText}</Grid>
             </Grid>
         ))}
     </Grid>

@@ -8,6 +8,7 @@ import {
     createClientRequest,
     deleteClientRequest,
 } from '../services/API/clients';
+import * as notificationsActions from '../store/actions/notifications';
 
 function* getClientsAction() {
     try {
@@ -22,8 +23,16 @@ function* createClientAction({ payload }) {
     try {
         const data = yield call(createClientRequest(payload));
         yield put(clientsActions.successCreateClient(data));
+        yield put(
+            notificationsActions.notificationShow({ notificationText: 'Клиент был успешно создан' })
+        );
     } catch (err) {
         yield put(clientsActions.failCreateClient(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Клиент не был создан',
+            })
+        );
     }
 }
 
@@ -31,8 +40,18 @@ function* editClientAction({ payload }) {
     try {
         yield call(getClientsListRequest);
         yield put(clientsActions.successEditClient(payload));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationText: 'Клиент был успешно изменен',
+            })
+        );
     } catch (err) {
         yield put(clientsActions.failEditClient(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Клиент не был измене',
+            })
+        );
     }
 }
 
@@ -40,8 +59,16 @@ function* deleteClientAction({ payload }) {
     try {
         const { data } = yield call(deleteClientRequest, payload);
         yield put(clientsActions.successDeleteClient(data));
+        yield put(
+            notificationsActions.notificationShow({ notificationText: 'Клиент был успешно удален' })
+        );
     } catch (err) {
         yield put(clientsActions.failDeleteClient(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Клиент не был удален',
+            })
+        );
     }
 }
 

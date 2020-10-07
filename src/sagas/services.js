@@ -4,6 +4,7 @@ import * as servicesActions from '../store/actions/services';
 import * as servicesTypes from '../store/types/services';
 
 import { getServicesListRequest, deleteServiceRequest } from '../services/API/services';
+import * as notificationsActions from '../store/actions/notifications';
 
 function* getServicesAction() {
     try {
@@ -18,8 +19,18 @@ function* createServiceAction({ payload }) {
     try {
         yield call(getServicesListRequest);
         yield put(servicesActions.successCreateService(payload));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationText: 'Услуга была успешно создана',
+            })
+        );
     } catch (err) {
         yield put(servicesActions.failCreateService(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Услуга не была создана',
+            })
+        );
     }
 }
 
@@ -27,8 +38,18 @@ function* editServiceAction({ payload }) {
     try {
         yield call(getServicesListRequest);
         yield put(servicesActions.successEditService(payload));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationText: 'услуга была успешно изменена',
+            })
+        );
     } catch (err) {
         yield put(servicesActions.failEditService(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Услуга не была изменена',
+            })
+        );
     }
 }
 
@@ -36,8 +57,18 @@ function* deleteServiceAction({ payload }) {
     try {
         const { data } = yield call(deleteServiceRequest, payload);
         yield put(servicesActions.successDeleteService(data));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationText: 'Услуга была успешно удалена',
+            })
+        );
     } catch (err) {
         yield put(servicesActions.failDeleteService(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Услуга не была удалена',
+            })
+        );
     }
 }
 

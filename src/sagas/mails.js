@@ -4,6 +4,7 @@ import * as mailsActions from '../store/actions/mails';
 import * as mailsTypes from '../store/types/mails';
 
 import { getMailsListRequest, sendNewMailRequest } from '../services/API/mails';
+import * as notificationsActions from '../store/actions/notifications';
 
 function* getMailsAction() {
     try {
@@ -16,10 +17,20 @@ function* getMailsAction() {
 
 function* createMailAction({ payload }) {
     try {
-        yield call(sendNewMailRequest, payload);
-        yield put(mailsActions.successCreateMail(payload));
+        const data = yield call(sendNewMailRequest, payload);
+        yield put(mailsActions.successCreateMail(data));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationText: 'Рассылка была успешно создана',
+            })
+        );
     } catch (err) {
         yield put(mailsActions.failCreateMail(err));
+        yield put(
+            notificationsActions.notificationShow({
+                notificationErrorText: 'Рассылка не была создана',
+            })
+        );
     }
 }
 
