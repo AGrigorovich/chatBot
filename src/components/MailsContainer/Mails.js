@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import { Grid, withStyles } from '@material-ui/core';
 
 import MainMenu from '../MainMenu/MainMenu';
+import AppFooter from '../AppFooter/AppFooter';
 import MainPageMenu from '../MainPageMenu/MainPageMenu';
 import MailsForm from './MailsForm';
 import ListOfMails from './ListOfMails';
@@ -34,6 +35,7 @@ const Mails = ({ classes, arrayOfMails, createMail }) => (
                 <ListOfMails arrayOfMails={arrayOfMails} />
             </Grid>
         </Grid>
+        <AppFooter />
     </>
 );
 

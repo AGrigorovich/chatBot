@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Grid, InputLabel, withStyles } from '@material-ui/core';
 
 import PropTypes from 'prop-types';
+
 import MainMenu from '../MainMenu/MainMenu';
+import AppFooter from '../AppFooter/AppFooter';
 import TextArea from '../TextArea/TextArea';
 import AppButton from '../AppButton/AppButton';
 
@@ -55,6 +57,7 @@ const Support = ({ classes, sendMailToSupport }) => {
                     disabled={!textFieldValue}
                 />
             </Grid>
+            <AppFooter />
         </>
     );
 };

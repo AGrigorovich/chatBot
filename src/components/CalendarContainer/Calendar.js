@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 
 import MainMenu from '../MainMenu/MainMenu';
+import AppFooter from '../AppFooter/AppFooter';
 import screen from '../../images/image.png';
 
 const Calendar = () => (
@@ -23,6 +24,7 @@ const Calendar = () => (
                 <img src={screen} alt="screen" />
             </p>
         </Grid>
+        <AppFooter />
     </>
 );
 

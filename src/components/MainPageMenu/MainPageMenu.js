@@ -11,7 +11,7 @@ import mainPageMenuItem from '../../constants/mainPageMenuItem';
 const styles = (theme) => ({
     menuContainer: {
         width: '15rem',
-        height: '100%',
+        height: 'calc(100% - 2rem)',
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'flex-start',
@@ -21,6 +21,7 @@ const styles = (theme) => ({
         position: 'relative',
         textAlign: 'center',
         padding: '3rem 0',
+        zIndex: 9,
     },
     menuItem: {
         '&:hover': {

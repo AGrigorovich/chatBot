@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { Grid, withStyles } from '@material-ui/core';
 
 import MainMenu from '../MainMenu/MainMenu';
+import AppFooter from '../AppFooter/AppFooter';
 import MainPageMenu from '../MainPageMenu/MainPageMenu';
 import EmployeesForm from './EmployeesForm';
 import ListOfEmployees from './ListOfEmployees';
@@ -54,6 +55,7 @@ const Employees = ({
                     />
                 </Grid>
             </Grid>
+            <AppFooter />
         </>
     );
 };

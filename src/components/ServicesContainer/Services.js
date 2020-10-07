@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { Grid, withStyles } from '@material-ui/core';
 
 import MainMenu from '../MainMenu/MainMenu';
+import AppFooter from '../AppFooter/AppFooter';
 import MainPageMenu from '../MainPageMenu/MainPageMenu';
 import ServicesForm from './ServicesForm';
 import ListOfServices from './ListOfServices';
@@ -53,6 +54,7 @@ const Services = ({
                     />
                 </Grid>
             </Grid>
+            <AppFooter />
         </>
     );
 };

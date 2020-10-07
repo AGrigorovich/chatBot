@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { Grid, withStyles } from '@material-ui/core';
 
 import MainMenu from '../MainMenu/MainMenu';
+import AppFooter from '../AppFooter/AppFooter';
 import MainPageMenu from '../MainPageMenu/MainPageMenu';
 import BranchForm from './BranchForm';
 import ListOfBranches from './ListOfBranches';
@@ -44,6 +45,7 @@ const Branch = ({ classes, createBranch, editBranch, deleteBranch, arrayOfBranch
                     />
                 </Grid>
             </Grid>
+            <AppFooter />
         </>
     );
 };

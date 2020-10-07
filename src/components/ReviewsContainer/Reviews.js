@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Grid, withStyles } from '@material-ui/core';
 
 import MainMenu from '../MainMenu/MainMenu';
+import AppFooter from '../AppFooter/AppFooter';
 import ReviewDescriptionItem from './ReviewDescriptionItem';
 
 const styles = {
@@ -32,6 +33,7 @@ const Reviews = ({ classes, getReviews, arrayOfReviews, approveReview, rejectRev
                     />
                 ))}
             </Grid>
+            <AppFooter />
         </>
     );
 };

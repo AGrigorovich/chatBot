@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { Grid, withStyles } from '@material-ui/core';
 
 import MainMenu from '../MainMenu/MainMenu';
+import AppFooter from '../AppFooter/AppFooter';
 import MainPageMenu from '../MainPageMenu/MainPageMenu';
 import ClientsForm from './ClientsForm';
 import ListOfClients from './ListOfClients';
@@ -44,6 +45,7 @@ const Clients = ({ classes, arrayOfClients, createClient, editClient, deleteClie
                     />
                 </Grid>
             </Grid>
+            <AppFooter />
         </>
     );
 };
