@@ -51,7 +51,7 @@ function* editEmployeeAction({ payload }) {
         yield put(employeesActions.failEditEmployee(err));
         yield put(
             notificationsActions.notificationShow({
-                notificationErrorText: 'Сотрудник не был создан',
+                notificationErrorText: 'Сотрудник не был изменен',
             })
         );
     }
@@ -70,7 +70,7 @@ function* deleteEmployeeAction({ payload }) {
         yield put(employeesActions.failDeleteEmployee(err));
         yield put(
             notificationsActions.notificationShow({
-                notificationErrorText: 'Сотрудник не был создан',
+                notificationErrorText: 'Сотрудник не был удален',
             })
         );
     }
