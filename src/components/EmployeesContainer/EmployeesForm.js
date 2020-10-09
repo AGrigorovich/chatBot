@@ -57,12 +57,34 @@ const EmployeesForm = ({
     const [selectedServices, changeSelectedServices] = useState(null);
     const [existingBranches, changeExistingBranches] = useState([]);
     const [existingServices, changeExistingServices] = useState([]);
+    const [needToSelectDays, changeScheduleDates] = useState(false);
+    const [needToSelectPattern, changeSchedulePatterns] = useState(false);
+    const [arrayOfEmployeeWorkingDays, changeArrayOfEmployeeWorkingDays] = useState([]);
     const { name = '', surname = '', nickname = '', id } = selectedEmployee;
     const [initialValues, changeInitialValues] = useState({
         name,
         surname,
         nickname,
     });
+
+    const validateData = (values) => {
+        if (!values.name && !values.surname && !values.nickname) {
+            return 'Вы не указали имя, фамилию или никнэйм';
+        }
+        if (!selectedBranches || !Object.keys(selectedBranches).length) {
+            return 'Выбери пожалуйста филиалы сотрудника';
+        }
+        if (!selectedServices || !Object.keys(selectedServices).length) {
+            return 'Выберите пожулуйста услуги сотрудника';
+        }
+        if (
+            (!needToSelectDays && !needToSelectPattern) ||
+            (needToSelectDays && !arrayOfEmployeeWorkingDays.length)
+        ) {
+            return 'Выберите пожулуйста рабочие дни сотрудника';
+        }
+        return false;
+    };
 
     useEffect(() => {
         const {
@@ -119,18 +141,16 @@ const EmployeesForm = ({
             onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(false);
                 changeDataErrors('');
-                if (!values.name && !values.surname && !values.nickname) {
-                    return changeDataErrors('Вы не указали имя, фамилию или никнэйм');
-                }
-                if (!selectedBranches || !Object.keys(selectedBranches).length) {
-                    return changeDataErrors('Выбери пожалуйста филиалы сотрудника');
-                }
-                if (!selectedServices || !Object.keys(selectedServices).length) {
-                    return changeDataErrors('Выберите пожулуйста услуги сотрудника');
+                const errorMessage = validateData(values);
+                if (errorMessage) {
+                    return changeDataErrors(errorMessage);
                 }
                 const newData = { ...values, selectedBranches, selectedServices, id };
                 resetForm();
                 changeSelectedSelectedEmployee({});
+                changeSelectedBranches(null);
+                changeSelectedServices(null);
+                changeArrayOfEmployeeWorkingDays([]);
                 if (!id || id === 0) {
                     editEmployee(newData);
                 }
@@ -189,7 +209,14 @@ const EmployeesForm = ({
                         />
                     </Grid>
                     <Grid className={classes.inputContainer}>
-                        <EmployeeSetWorkingSchedule />
+                        <EmployeeSetWorkingSchedule
+                            needToSelectDays={needToSelectDays}
+                            changeScheduleDates={changeScheduleDates}
+                            needToSelectPattern={needToSelectPattern}
+                            changeSchedulePatterns={changeSchedulePatterns}
+                            arrayOfEmployeeWorkingDays={arrayOfEmployeeWorkingDays}
+                            changeArrayOfEmployeeWorkingDays={changeArrayOfEmployeeWorkingDays}
+                        />
                     </Grid>
                     <AppButton
                         buttonName="Сохранить"

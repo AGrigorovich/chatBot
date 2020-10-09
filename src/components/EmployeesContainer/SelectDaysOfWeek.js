@@ -5,17 +5,15 @@ import { compose } from 'redux';
 
 import { Grid, Checkbox, FormControlLabel, withStyles } from '@material-ui/core';
 
+import dayOfWeekForSelect from '../../constants/dayOfWeekForSelect';
+
 const styles = (theme) => ({
     rootContainer: {
         width: '100%',
         display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         color: theme.palette.gold,
-    },
-    checkBoxWrapper: {
-        width: '35%',
-        display: 'flex',
-        flexDirection: 'column',
-        margin: '1.5rem',
     },
     checkboxRoot: {
         color: theme.palette.gold,
@@ -26,15 +24,33 @@ const styles = (theme) => ({
     },
 });
 
-const SelectDaysOfWeek = ({ classes }) => {
+const SelectDaysOfWeek = ({
+    classes,
+    arrayOfEmployeeWorkingDays,
+    changeArrayOfEmployeeWorkingDays,
+}) => {
+    const detectCheckedValues = (value) =>
+        !!arrayOfEmployeeWorkingDays.find((item) => item === value);
+
+    const selectNewDay = (newValue) => {
+        const isValueAlreadySelect = arrayOfEmployeeWorkingDays.find((item) => item === newValue);
+        let newValues;
+        if (isValueAlreadySelect) {
+            newValues = arrayOfEmployeeWorkingDays.filter((item) => item !== newValue);
+        } else {
+            newValues = [...arrayOfEmployeeWorkingDays, newValue];
+        }
+        changeArrayOfEmployeeWorkingDays(newValues);
+    };
     return (
         <Grid className={classes.rootContainer}>
-            <Grid className={classes.checkBoxWrapper}>
+            {dayOfWeekForSelect.map(({ id, name, value }) => (
                 <FormControlLabel
+                    key={id}
                     control={
                         <Checkbox
-                            checked
-                            onChange={() => console.log('fff')}
+                            checked={detectCheckedValues(value)}
+                            onChange={() => selectNewDay(value)}
                             classes={{
                                 root: classes.checkboxRoot,
                                 checked: classes.checked,
@@ -42,30 +58,17 @@ const SelectDaysOfWeek = ({ classes }) => {
                             color="default"
                         />
                     }
-                    label="ПН"
+                    label={name}
                 />
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={false}
-                            onChange={() => console.log('fff')}
-                            classes={{
-                                root: classes.checkboxRoot,
-                                checked: classes.checked,
-                            }}
-                            color="default"
-                        />
-                    }
-                    label="ВТ"
-                />
-            </Grid>
-            )
+            ))}
         </Grid>
     );
 };
 
 SelectDaysOfWeek.propTypes = {
     classes: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+    arrayOfEmployeeWorkingDays: PropTypes.arrayOf(PropTypes.string).isRequired,
+    changeArrayOfEmployeeWorkingDays: PropTypes.func.isRequired,
 };
 
 export default compose(withStyles(styles))(SelectDaysOfWeek);
