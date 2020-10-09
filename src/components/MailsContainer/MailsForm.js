@@ -61,7 +61,7 @@ const MailsForm = ({ classes, createMail }) => {
     const [textFieldValue, changeTextFieldValue] = useState('');
     const [isNeedMails, changeMailsNecessary] = useState(false);
     const [isNeedShares, changeSharesNecessary] = useState(false);
-    const [datErrors, changeDataErrors] = useState('');
+    const [dataErrors, changeDataErrors] = useState('');
 
     const resetStateValues = () => {
         changeTextFieldValue('');
@@ -80,7 +80,7 @@ const MailsForm = ({ classes, createMail }) => {
 
     return (
         <Grid className={classes.mainPageContainer}>
-            <FormHelperText className={classes.errorMessage}>{datErrors}</FormHelperText>
+            <FormHelperText className={classes.errorMessage}>{dataErrors}</FormHelperText>
             <InputLabel>Создайте новую рассылку</InputLabel>
             <Grid className={classes.textAreaWrapper}>
                 <Grid className={classes.textAreaContainer}>
@@ -92,7 +92,7 @@ const MailsForm = ({ classes, createMail }) => {
                     <AppButton
                         buttonName="Отправить"
                         handleClick={handleSendButtonClick}
-                        disabled={!textFieldValue || !!datErrors}
+                        disabled={!textFieldValue || !!dataErrors}
                     />
                 </Grid>
                 <Grid className={classes.checkBoxWrapper}>
