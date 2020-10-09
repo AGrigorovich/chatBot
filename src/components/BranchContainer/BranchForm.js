@@ -69,8 +69,10 @@ const BranchForm = ({
             openTime = '',
             closeTime = '',
         } = selectedBranch;
-        const branchOpenTime = { label: openTime.slice(0, 5), value: openTime };
-        const branchCloseTime = { label: closeTime.slice(0, 5), value: closeTime };
+        const branchOpenTime = openTime ? { label: openTime.slice(0, 5), value: openTime } : null;
+        const branchCloseTime = closeTime
+            ? { label: closeTime.slice(0, 5), value: closeTime }
+            : null;
         changeStartWorkHours(branchOpenTime);
         changeEndWorkHours(branchCloseTime);
         changeInitialValues({

@@ -22,6 +22,7 @@ const SelectHoursWithLabel = ({ classes, selectedHours, changeSelectedHours, lab
             onChange={changeSelectedHours}
             options={hours}
             placeholder="Выберите время"
+            isClearable
         />
     </Grid>
 );
