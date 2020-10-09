@@ -31,6 +31,11 @@ const materialThemeStyles = createMuiTheme({
                 color: '#FFDF00',
             },
         },
+        MuiFormControlLabel: {
+            root: {
+                marginLeft: 0,
+            },
+        },
     },
 });
 

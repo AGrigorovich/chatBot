@@ -10,7 +10,7 @@ import { FormHelperText, Grid, InputLabel, withStyles } from '@material-ui/core'
 import AppButton from '../AppButton/AppButton';
 import InputFieldWithLabel from '../InputFieldWithLabel/InputFieldWithLabel';
 import AppSelect from '../AppSelect/AppSelect';
-import EmployeeSetWorkingShcedule from './EmployeeSetWorkingShcedule';
+import EmployeeSetWorkingSchedule from './EmployeeSetWorkingSchedule';
 
 const styles = (theme) => ({
     formContainer: {
@@ -189,7 +189,7 @@ const EmployeesForm = ({
                         />
                     </Grid>
                     <Grid className={classes.inputContainer}>
-                        <EmployeeSetWorkingShcedule />
+                        <EmployeeSetWorkingSchedule />
                     </Grid>
                     <AppButton
                         buttonName="Сохранить"
